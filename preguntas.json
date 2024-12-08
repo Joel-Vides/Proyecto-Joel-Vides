@@ -1,0 +1,12 @@
+[
+    {
+        "categoria":"Arte y Cultura",
+        "pregunta":"¿Quien Pinto la Monalisa?",
+        "respuesta":"Leonardo Da Vinci",
+        "incorrecta1":"Picasso",
+        "incorrecta2":"Miguel Angel",
+        "incorrecta3":"Monet",
+        "imagen": "https://th.bing.com/th/id/OIP.RqbpG6Qvi_o4e4KuktkshQHaLC?rs=1&pid=ImgDetMain",
+        "object_fit": "cover"
+    }
+]

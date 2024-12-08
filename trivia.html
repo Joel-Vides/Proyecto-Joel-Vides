@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen U2</title>
+    <link rel="stylesheet" href="/css/trivia.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <main>
+        <!-- Mejores Puntuaciones -->
+        <section class="mejores-puntuaciones">
+            <h2 class="estadisticas">Mejores Puntuaciones</h2>
+            <div class="mejores">
+                <p class="posicion" id="p1">1-> </p>
+                <p class="posicion" id="p2">2-></p>
+                <p class="posicion" id="p3">3-></p>
+                <p class="posicion" id="p4">4-></p>
+                <p class="posicion" id="p5">5-></p>
+                <p class="posicion" id="p6">6-></p>
+                <p class="posicion" id="p7">7-></p>
+                <p class="posicion" id="p8">8-></p>
+                <p class="posicion" id="p9">9-></p>
+                <p class="posicion" id="p10">10-></p>
+            </div>
+        </section>
+
+        <section class="seccion1">
+
+            <h1>Juego de Preguntas y Respuestas</h1>
+
+            <table>
+
+                <div class="preguntas" id="pregunta">
+
+                </div>
+
+                <section class="respuestas">
+                    <button class="respuesta" id="boton1" onclick="escogerRespuesta(1)">Respuesta 1</button>
+                    <button class="respuesta" id="boton2" onclick="escogerRespuesta(2)">Respuesta 2</button>
+                    <button class="respuesta" id="boton3" onclick="escogerRespuesta(3)">Respuesta 3</button>
+                    <button class="respuesta" id="boton4" onclick="escogerRespuesta(4)">Respuesta 4</button>
+                </section>
+
+            </table>
+
+        </section>
+
+
+
+
+        <!-- Estadisticas -->
+        <section class="seccion2">
+            <h2 id="aciertos" class="estadisticas">Aciertos: 0</h2>
+            <h2 id="tiempo" class="estadisticas">Temporizador: 00:00</h2>
+            <h2 id="errores" class="estadisticas">Errores: 0</h2>
+            <h2 id="puntuacion" class="estadisticas">Puntuación: 0</h2>
+        </section>
+
+    </main>
+
+
+    <footer>
+        
+        <a href="/index.html">
+            <button class="menu">Menu</button>
+            </button>
+        </a>
+        <!-- <a class="boton" href="/index.html">Menu</a> -->
+    </footer>
+
+    <script src="/js/juegoTrivia.js"></script>
+
+
+</body>
+</html>
