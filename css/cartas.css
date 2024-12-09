@@ -1,3 +1,7 @@
+*{
+    transition: 0.3s;
+}
+
 body{
     background: rgb(135,0,0);
     background: linear-gradient(90deg, rgba(135,0,0,1) 0%, rgba(12,68,134,1) 50%, rgba(0,134,45,1) 100%);
@@ -14,22 +18,7 @@ main{
     /* margin: 80px auto 50px; */
 }
 
-.mejores-puntuaciones{
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 0 10px 10px 10px;
-    width: 18%;
-    height: auto;
-    position: absolute;
-    left: 20px;
-    height: 510px;
-}
 
-.mejores{
-    height: 350px;
-    border: 1px solid white;
-    border-radius: 8px;
-}
 
 .seccion-Cartas{
     background-color: rgba(255, 255, 255, 0.2);
@@ -52,6 +41,11 @@ main{
     border: 1px ridge black;
     border-radius: 10px;
     transition: 0.2s;
+}
+
+.imagen{
+    width: 50px;
+    height: 50px;
 }
 
 h1{
@@ -127,7 +121,7 @@ footer{
     font-size: 18px;
     border: none;
     top: 20px;
-    right: 110px;
+    right: 15px;
 }
 
 .reiniciar:hover{

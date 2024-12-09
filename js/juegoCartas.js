@@ -7,11 +7,23 @@ let segundoResultado = null;
 let movimientos = 0;
 let aciertos = 0;
 let temporizador = 0;
+let cartasImagenes = null;
+
+// Para el Temporizador
 let tiempo = 0;
 let segundos = 0;
+let segundos2 = 0;
 let minutos = 0;
+let minutos2 = 0;
+
+
 let Contador = 0;
 let timer;
+
+// Puntos
+let puntosIntentos = 0;
+let puntosTiempo = 200;
+let puntosTotales = 0;
 
 
 //Sonido de las Cartas
@@ -33,10 +45,11 @@ function audioFinal() {
 }
 
 
-//Apuntando a documento HTML
+//Modificar los valores de las estadisticas HTML
 let mostrarMovimientos = document.getElementById('movimientos');
 let mostrarAciertos = document.getElementById('aciertos');
 let mostrarTiempo = document.getElementById('tiempo');
+let mostrarPuntuacion = document.getElementById('puntuacion');
 
 //Numeros Aleatorios Generacion
 let numeros = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
@@ -54,28 +67,34 @@ function tiempoContador() {
         tiempo++;
         segundos++;
 
-        if (minutos == 10) {
-            mostrarTiempo.innerHTML = `Tiempo: 10:00`;
-            console.log(tiempo);
-            return;
-        }
-
-        if (segundos < 10) {
-            mostrarTiempo.innerHTML = `Tiempo: 0${minutos}:0${segundos}`;
-        }else if(segundos >= 10){
-            mostrarTiempo.innerHTML = `Tiempo: 0${minutos}:${segundos}`;
-        }
-
-        if (segundos < 10 && minutos < 10) {
-            mostrarTiempo.innerHTML = `Tiempo: 0${minutos}:0${segundos}`;
-        } 
-
-        if(segundos >= 60){
+        if (segundos2 < 5 && segundos == 10) {
+            segundos = 0;
+            segundos2++;
+        }else if (segundos2 == 5 && segundos == 10) {
+            segundos2 = 0;
             segundos = 0;
             minutos++;
-            mostrarTiempo.innerHTML = `Tiempo: 0${minutos}:0${segundos}`;
-        }else if(minutos >= 10){
-            mostrarTiempo.innerHTML = `Tiempo: ${minutos}:0${segundos}`;
+        }else if (minutos == 10) {
+            minutos = 0;
+            minutos2++;
+        }
+        mostrarTiempo.innerHTML = `Tiempo: ${minutos2}${minutos}:${segundos2}${segundos}`;
+
+
+        // Puntuacion del Tiempo
+        if (tiempo <= 20) {
+            console.log('es Menor a 30');
+            puntosTiempo = 200;   
+        }else if (tiempo > 20 && tiempo <= 25) {
+            puntosTiempo = puntosTiempo - 3;
+                
+        }else if (tiempo > 25 && tiempo <= 35) {
+    
+                puntosTiempo = puntosTiempo - 4;
+    
+        }else if (tiempo > 45 && tiempo <= 80) {
+    
+                puntosTiempo = puntosTiempo - 5;
         }
 
     },1000)
@@ -88,7 +107,6 @@ function reverso(id) {
     if (temporizador == 0) {
         tiempoContador();
         temporizador = 1;
-        
     }
 
     cartasVolteadas ++;
@@ -136,11 +154,18 @@ function reverso(id) {
             if (aciertos === 8) {
                 mostrarAciertos.innerHTML = `Aciertos: ${aciertos}!`;
                 mostrarMovimientos.innerHTML = `Movimientos: ${movimientos}!`;
-                mostrarTiempo.innerHTML = `Tiempo: ${minutos}:${segundos}!`;
+                mostrarTiempo.innerHTML = `Tiempo: ${minutos2}${minutos}:${segundos2}${segundos}!`;
                 clearInterval(timer);
                 puntuacion(movimientos, tiempo);
 
                 audioFinal();
+
+                puntosTotales = puntosIntentos + puntosTiempo;
+                mostrarPuntuacion.innerHTML = `Puntuación: ${puntosTotales}`
+
+                console.log(puntosTiempo);
+                console.log(puntosIntentos);
+                
             }
 
         }else{
@@ -151,78 +176,65 @@ function reverso(id) {
                 carta1.disabled = false;
                 carta2.disabled = false;
                 cartasVolteadas = 0;
+                            
             }, 800);
         }
     }
 
 
 }
-reiniciarCartas(numeros, id);
 
+
+// Boton para Reiniciar
 function reiniciarCartas() {
-    const botonReiniciar = document.querySelector('.reiniciar');
-    botonReiniciar.addEventListener('click', () => {
-        numeros = numeros.sort(() => {
-
-            numeros = numeros.sort(() => {
-                return Math.random()-0.5;
-                console.log(numeros);
-            
-            });
-
-            reverso(id);
-        
-        });
-        
-    })
+    location.reload();
 }
 
+// Funcion para la Puntuacion por los Movimientos
 function puntuacion() {
-    let puntosIntentos = 0;
-    let puntosTiempo = 200;
-
     const puntos = document.querySelector('#p1');
-    const mostrarPuntuacion = document.querySelector('#puntuacion');
+
 
     if (movimientos == 8) {
+        puntosIntentos = 300;
+
+    }else if (movimientos == 9) {
+        puntosIntentos = 290;
+
+    } else if (movimientos == 10) {
+        puntosIntentos = 280;
+
+    } else if (movimientos > 10 && movimientos <= 12) {
+        puntosIntentos = 250;
+
+    } else if (movimientos > 12 && movimientos <= 15) {
+        puntosIntentos = 220;
+
+    } else if (movimientos > 15 && movimientos <= 17) {
+        puntosIntentos = 180;
+
+    } else if (movimientos > 17 && movimientos <= 20) {
+        puntosIntentos = 150;
+
+    } else if (movimientos > 20 && movimientos <= 23) {
+        puntosIntentos = 120;
+
+    } else if (movimientos > 23 && movimientos <= 26) {
         puntosIntentos = 100;
-        puntos.innerHTML = `1-> ${puntosIntentos}`;
-    }else if (movimientos > 8 && movimientos <= 12) {
+
+    } else if (movimientos > 26 && movimientos <= 29) {
         puntosIntentos = 80;
-        puntos.innerHTML = `1-> ${puntosIntentos}`;
-    } else if (movimientos >12 && movimientos <= 15) {
+
+    } else if (movimientos > 30 && movimientos <= 33) {
         puntosIntentos = 60;
-        puntos.innerHTML = `1-> ${puntosIntentos}`;
-    } else if (movimientos >15 && movimientos <= 20) {
+
+    } else if (movimientos > 33 && movimientos <= 36) {
         puntosIntentos = 40;
-        puntos.innerHTML = `1-> ${puntosIntentos}`;
-    } else if (movimientos >20 && movimientos <= 25) {
+
+    } else if (movimientos > 36) {
         puntosIntentos = 20;
-        puntos.innerHTML = `1-> ${puntosIntentos}`;
-    } else if (movimientos >25) {
-        puntosIntentos = 10;
-        puntos.innerHTML = `1-> ${puntosIntentos}`;
+
     }
-
-    mostrarPuntuacion.innerHTML = `Puntuación: ${puntosIntentos}`
-    // setInterval(() => {
-    //     let hola = 0;
-    //     hola++;
-    // if (tiempo <= 20) {
-    //     console.log('es Menor a 30');
-    //     puntosTiempo = 200;   
-    // }else if (tiempo > 20 && tiempo <= 40) {
-    //     puntosTiempo--;
-            
-    // }else if (tiempo > 40 && tiempo <= 60) {
-
-    //         puntosTiempo = puntosTiempo-2;
-
-    // }else if (tiempo > 60 && tiempo <= 80) {
-
-    //         puntosTiempo = puntosTiempo-3;
-    // }
-    // }, 1000)
 
 }
 
